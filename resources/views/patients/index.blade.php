@@ -10,35 +10,35 @@
         </a>
     </div>
 
-    <div class="overflow-x-auto bg-white shadow rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
+    <div class="bg-white shadow rounded-lg">
+        <table class="w-full table-auto divide-y divide-gray-200">
             <thead class="bg-blue-100">
                 <tr>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Name</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Email</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Phone</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Address</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Gender</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">DOB</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Blood group</th>
-                    <th class="px-6 py-3 text-center text-sm font-medium text-gray-700">Actions</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Name</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Email</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Phone</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Address</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Gender</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">DOB</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Blood group</th>
+                    <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">Actions</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 bg-white">
                 @forelse($patients as $patient)
                     <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td class="px-4 py-4 text-sm text-gray-900 break-words">
                             {{ $patient->first_name }} {{ $patient->last_name }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->email }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->phone }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->address }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->gender }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->date_of_birth }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->blood_group }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm">
+                        <td class="px-4 py-4 text-sm text-gray-700 break-words">{{ $patient->email }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 break-words">{{ $patient->phone }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 break-words">{{ $patient->address }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700">{{ $patient->gender }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700">{{ $patient->date_of_birth }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700">{{ $patient->blood_group }}</td>
+                        <td class="px-4 py-4 text-center text-sm space-x-2">
                             <a href="{{ route('patients.edit', $patient->id) }}"
-                               class="text-yellow-600 hover:underline hover:text-yellow-800 mr-4">Edit</a>
+                               class="text-yellow-600 hover:underline hover:text-yellow-800">Edit</a>
 
                             <form action="{{ route('patients.destroy', $patient->id) }}"
                                   method="POST"
@@ -55,7 +55,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">
+                        <td colspan="8" class="px-6 py-4 text-center text-sm text-gray-500">
                             No patients found.
                         </td>
                     </tr>

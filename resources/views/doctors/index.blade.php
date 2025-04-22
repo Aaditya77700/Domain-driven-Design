@@ -10,8 +10,8 @@
         </a>
     </div>
 
-    <div class="overflow-x-auto bg-white shadow rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
+    <div class="bg-white shadow rounded-lg">
+        <table class="w-full table-auto divide-y divide-gray-200">
             <thead class="bg-emerald-100">
                 <tr>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Name</th>
@@ -25,18 +25,17 @@
             <tbody class="divide-y divide-gray-100 bg-white">
                 @forelse ($doctors as $doctor)
                     <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <td class="px-6 py-4 text-sm text-gray-900 break-words">
                             {{ $doctor->first_name }} {{ $doctor->last_name }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $doctor->email }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $doctor->phone }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $doctor->specialization }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $doctor->address }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm">
+                        <td class="px-6 py-4 text-sm text-gray-700 break-words">{{ $doctor->email }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700 break-words">{{ $doctor->phone }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700 break-words">{{ $doctor->specialization }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700 break-words">{{ $doctor->address }}</td>
+                        <td class="px-6 py-4 text-center text-sm space-x-2">
                             <a href="{{ route('doctors.edit', $doctor->id) }}"
-                               class="text-blue-600 hover:underline hover:text-blue-800 mr-4">Edit</a>
+                               class="text-blue-600 hover:underline hover:text-blue-800">Edit</a>
 
-                               
                             <form method="POST" action="{{ route('doctors.destroy', $doctor->id) }}"
                                   class="inline-block"
                                   onsubmit="return confirm('Are you sure you want to delete this doctor?')">
@@ -46,11 +45,12 @@
                                         class="text-red-600 hover:underline hover:text-red-800">
                                     Delete
                                 </button>
-                                <a href="{{ route('doctors.appointments.index', $doctor->id) }}" class="btn btn-sm btn-secondary">
-    View Appointments
-</a>
-
                             </form>
+
+                            <a href="{{ route('doctors.appointments.index', $doctor->id) }}"
+                               class="text-gray-700 underline hover:text-gray-900">
+                                View Appointments
+                            </a>
                         </td>
                     </tr>
                 @empty
