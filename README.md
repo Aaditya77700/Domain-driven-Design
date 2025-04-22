@@ -1,61 +1,221 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📅 BookMyCare – Appointment Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A **Laravel 12** demo project to manage appointments between patients and doctors, designed with a **Domain-Driven Design (DDD)** architecture for clear separation of concerns, scalability, and maintainability.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-12-red.svg)
+![PHP](https://img.shields.io/badge/PHP-8.2-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🌟 Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- ✅ Domain-Driven Design Architecture
+- 👨‍⚕️ Doctor & Patient CRUD (Create, Read, Update, Delete)
+- 📅 Appointment Booking System
+- 🔍 View Appointments by Doctor
+- 🧾 Appointment Status & Notes (e.g., medical condition)
+- 🎨 Tailwind CSS UI with optional Bootstrap fallback
+- 🧪 Eloquent Model Factories & Seeders
+- 🔐 Login/Register system (basic auth ready)
+- 🏥 Clean and extensible structure
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🧱 Tech Stack
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend**: Laravel 12 (PHP)
+- **Frontend**: Tailwind CSS, Bootstrap 5 (for legacy components)
+- **Database**: MySQL
+- **Authentication**: Custom session-based authentication
+- **ORM**: Eloquent
+- **Factories & Seeders**: Laravel's factory and seeder system
+- **PHP Version**: 8.1 or higher
+---
 
-## Laravel Sponsors
+## 🖼️ Screenshots
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 📌 Login Page
 
-### Premium Partners
+![Login Screenshot](public/images/login.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+### 📌 Register Page
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![Register Screenshot](public/images/register.png)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+### 📌 Manage Doctors
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![Doctor Screenshot](public/images/doctor-crud.png)
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 📌 Manage Patients
+
+![Borrow Screenshot](public/images/patient-crud.png)
+
+---
+
+### 📌 Appointments
+
+![Appointments Screenshot](public/images/appointments.png)
+
+---
+
+### 📌 Book-Appointment
+
+![Book-Appointment Screenshot](public/images/book-appointment.png)
+
+---
+
+### 📌 Individual Doctor Appointment Listing
+
+![Dashboard Screenshot](public/images/doctor-appointment.png)
+
+---
+
+## 🗂️ Project Structure (DDD)
+```
+.
+├── app/
+│   ├── Application/
+│   ├── Domain/
+│   │   ├── Appointment/
+│   │   │   ├── Models/
+│   │   │   │   └── Appointment.php
+│   │   │   └── Repositories/
+│   │   │       └── AppointmentRepositoryInterface.php
+│   │   ├── Doctor/
+│   │   │   ├── Models/
+│   │   │   │   └── Doctor.php
+│   │   │   └── Repositories/
+│   │   │       └── DoctorRepositoryInterface.php
+│   │   └── Patient/
+│   │       ├── Models/
+│   │       │   └── Patient.php
+│   │       └── Repositories/
+│   │           └── PatientRepositoryInterface.php
+│   ├── Infrastructure/
+│   │   └── Persistence/
+│   │       ├── AppointmentRepository.php
+│   │       ├── DoctorRepository.php
+│   │       └── PatientRepository.php
+│   ├── Interfaces/
+│   │   └── Http/
+│   │       ├── Controllers/
+│   │       │   ├── AppointmentBookingController.php
+│   │       │   ├── AuthFormController.php
+│   │       │   ├── Controller.php
+│   │       │   ├── DoctorController.php
+│   │       │   └── PatientController.php
+│   │       └── Requests/
+│   │           ├── LoginRequest.php
+│   │           └── RegisterRequest.php
+│   ├── Models/
+│   │   └── User.php
+│   └── Providers/
+│       ├── AppServiceProvider.php
+│       └── RepositoryServiceProvider.php
+├── database/
+│   ├── factories/
+│   │   ├── AppointmentFactory.php
+│   │   ├── DoctorFactory.php
+│   │   ├── PatientFactory.php
+│   │   └── UserFactory.php
+│   ├── migrations/
+│   │   └── ... (migration files)
+│   ├── seeders/
+│   │   ├── AppointmentSeeder.php
+│   │   ├── DatabaseSeeder.php
+│   │   ├── DoctorSeeder.php
+│   │   └── PatientSeeder.php
+│   └── database.sqlite
+├── public/
+│   ├── css/
+│   │   └── ...
+│   ├── js/
+│   │   └── ...
+│   ├── .gitignore
+│   └── index.php
+├── resources/
+│   ├── css/
+│   │   └── ...
+│   ├── js/
+│   │   └── ...
+│   └── views/
+│       ├── appointments/
+│       │   ├── book.blade.php
+│       │   ├── by-doctor.blade.php
+│       │   ├── create.blade.php
+│       │   ├── doctor_appointments.blade.php
+│       │   └── index.blade.php
+│       ├── auth/
+│       │   ├── login.blade.php
+│       │   └── register.blade.php
+│       ├── doctors/
+│       │   ├── create.blade.php
+│       │   ├── edit.blade.php
+│       │   ├── form.blade.php
+│       │   └── index.blade.php
+│       ├── layouts/
+│       │   ├── app.blade.php
+│       │   └── auth.blade.php
+│       ├── patients/
+│       │   ├── create.blade.php
+│       │   ├── edit.blade.php
+│       │   └── index.blade.php
+│       └── welcome.blade.php
+├── routes/
+│   ├── api.php
+│   ├── channels.php
+│   ├── console.php
+│   └── web.php
+├── storage/
+│   └── ... (app, framework, logs)
+├── tests/
+│   └── ... (Feature, Unit)
+├── vendor/
+│   └── ... (Composer dependencies)
+├── .editorconfig
+├── .env
+├── .env.example
+├── .gitattributes
+├── .gitignore
+├── artisan
+├── composer.json
+├── composer.lock
+├── package.json
+├── phpunit.xml
+├── README.md
+└── vite.config.js
+```
+
+
+
+---
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/yourusername/bookmycare.git
+cd bookmycare
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+
+```
+
+
+## 🤝 Contributing
+Contributions are welcome! Please fork this repository and submit a pull request.
+     ```
+## 📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
+    ```
