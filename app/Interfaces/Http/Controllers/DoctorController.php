@@ -54,4 +54,15 @@ class DoctorController extends Controller
         $this->service->delete($id);
         return redirect()->route('doctors.index');
     }
+
+
+
+    public function appointments($id)
+{
+    $doctor = $this->service->find($id);
+    $appointments = $doctor->appointments()->with('patient')->latest()->get();
+
+    return view('appointments.by-doctor', compact('doctor', 'appointments'));
+}
+
 }

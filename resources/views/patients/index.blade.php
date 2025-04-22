@@ -1,53 +1,67 @@
-{{-- resources/views/patients/index.blade.php --}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patients</title>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Patients</h1>
-        
-        <!-- Add Patient Button -->
-        <div class="mb-3">
-            <a href="{{ route('patients.create') }}" class="btn btn-primary">Add Patient</a>
-        </div>
-        
-        <!-- Patients Table -->
-        <table class="table table-striped">
-            <thead>
+@extends('layouts.app')
+
+@section('content')
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">🧑‍⚕️ Patients List</h1>
+        <a href="{{ route('patients.create') }}"
+           class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+            ➕ Add Patient
+        </a>
+    </div>
+
+    <div class="overflow-x-auto bg-white shadow rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-blue-100">
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Name</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Email</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Phone</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Address</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Gender</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">DOB</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Blood group</th>
+                    <th class="px-6 py-3 text-center text-sm font-medium text-gray-700">Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach($patients as $patient)
-                    <tr>
-                        <td>{{ $patient->first_name }} {{ $patient->last_name }}</td>
-                        <td>{{ $patient->email }}</td>
-                        <td>{{ $patient->phone }}</td>
-                        <td>
-                            <a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('patients.destroy', $patient->id) }}" method="POST" class="d-inline">
-                                @csrf @method('DELETE')
-                                <button onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</button>
+            <tbody class="divide-y divide-gray-100 bg-white">
+                @forelse($patients as $patient)
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {{ $patient->first_name }} {{ $patient->last_name }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->email }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->phone }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->address }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->gender }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->date_of_birth }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $patient->blood_group }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm">
+                            <a href="{{ route('patients.edit', $patient->id) }}"
+                               class="text-yellow-600 hover:underline hover:text-yellow-800 mr-4">Edit</a>
+
+                            <form action="{{ route('patients.destroy', $patient->id) }}"
+                                  method="POST"
+                                  class="inline-block"
+                                  onsubmit="return confirm('Are you sure you want to delete this patient?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        class="text-red-600 hover:underline hover:text-red-800">
+                                    Delete
+                                </button>
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">
+                            No patients found.
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
-
-    <!-- Bootstrap JS, Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+@endsection
